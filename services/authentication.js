@@ -3,9 +3,10 @@ const JWT = require("jsonwebtoken");
 const secret = "HelloGuysWhatsUp";
 
 function createTokenForUser(user) {
+  // console.log(user)
   const payload = {
     _id: user._id,
-    name: user.fullName,
+    name: user.name,
     email: user.email,
   };
   const token = JWT.sign(payload, secret);

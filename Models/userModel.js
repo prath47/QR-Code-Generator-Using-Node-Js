@@ -41,16 +41,16 @@ userSchema.static(
   async function (email, password) {
     const user = await this.findOne({ email: email });
     if (!user) throw new Error("User not found!");
-    
+    // console.log(user)
     const salt = user.salt;
     const hashedPassword = user.password;
-    
+
     const userProvidedPassword = createHmac("sha256", salt)
-    .update(password)
-    .digest("hex");
-    
+      .update(password)
+      .digest("hex");
+
     if (hashedPassword !== userProvidedPassword)
-    throw new Error("incorrect Email/Password");
+      throw new Error("incorrect Email/Password");
 
     const token = createTokenForUser(user);
     return token;

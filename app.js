@@ -1,13 +1,13 @@
-const express = require('express');
-const app = express()
-const path = require('path');
-require('dotenv').config();
-const userRoutes = require('./Routes/userRoutes')
-const mongoose = require('mongoose');
+const express = require("express");
+const app = express();
+const path = require("path");
+require("dotenv").config();
+const userRoutes = require("./Routes/userRoutes");
+const mongoose = require("mongoose");
 const {
   checkForAuthenticationCookie,
 } = require("./middlewares/authentication");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
@@ -20,18 +20,19 @@ mongoose
     console.log(error);
   });
 
+app.set("view engine", "ejs");
+app.set("views", path.resolve("./views"));
 
-app.set('view engine', 'ejs')
-app.set('views', path.resolve('./views'))
+const PORT = process.env.PORT || 3000;
 
-const PORT = process.env.PORT || 3000
+app.use("/user", userRoutes);
 
-app.use("/user" , userRoutes)
-
-app.get('/', (req, res) => {
-    res.render("home")
-})
+app.get("/", (req, res) => {
+  res.render("home", {
+    user: req.user,
+  });
+});
 
 app.listen(PORT, () => {
-    console.log(`App started on port ${PORT}`)
-})
+  console.log(`App started on port ${PORT}`);
+});
