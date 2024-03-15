@@ -29,6 +29,11 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
+        <% if (typeof message !=='undefined' ) { %>
+            <div class="alert alert-danger mt-4" role="alert">
+                <%= message %>
+            </div>
+            <% } %>
     </div>
     <%- include('./partials/scripts') %>
 </body>

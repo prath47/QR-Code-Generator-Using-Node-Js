@@ -30,8 +30,17 @@ router.get("/generatedQR", isLogin, (req, res) => {
 router.get("/signup", isLogout, (req, res) => {
   res.render("signup");
 });
-router.post("/signup", async (req, res) => {
+
+router.post("/signup", isLogout, async (req, res) => {
   const { name, email, password } = req.body;
+  const NewUser = await User.findOne({ email: email });
+  if (NewUser) {
+    return res.render("signup", {
+      message: "User Already Exists",
+    });
+  }
+  // console.log(NewUser);
+
   await User.create({
     name,
     email,
