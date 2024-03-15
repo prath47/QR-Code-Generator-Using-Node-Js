@@ -13,7 +13,7 @@
 
     <form action="/generate-qr" class="w-50 mx-auto p-2 mt-4" method="post">
       <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <label for="exampleInputEmail1" class="form-label">Enter Text/Url</label>
         <input name="url" type="text" class="form-control" id="url" aria-describedby="url" required />
       </div>
       <button type="submit" class="btn btn-primary">Generate QR</button>
@@ -21,12 +21,23 @@
 
     <div class="card-continer mx-auto p-2 mt-4 w-50">
       <div class="card w-100">
-        <img src="<%= locals.imgSrc %>" class="card-img-top" alt="Please Enter Url to Generate Image" />
-        <div class="card-body">
-          <h5 class="card-title">Generated QR</h5>
-          <p class="card-text">URL</p>
-          <!-- <a href="#" class="btn btn-primary">Go to Link</a> -->
-        </div>
+        <% if (locals.imgSrc) { %>
+          <img src="<%= locals.imgSrc %>" class="card-img-top w-50 p-3 mx-auto" alt="Please Enter Url to Generate Image" />
+          <% } else {%>
+            <div class="mx-auto w-auto">Please Enter Url to Generate Image</div>
+            <% } %>
+
+              <div class="card-body">
+                <h5 class="card-title">Generated QR</h5>
+                <% if (locals.url) { %>
+                  <p class="card-text">
+                    <%= locals.url %>
+                  </p>
+                  <% } else { %>
+                    <p class="card-text">URL</p>
+                    <% } %>
+                      <!-- <a href="#" class="btn btn-primary">Go to Link</a> -->
+              </div>
       </div>
     </div>
 

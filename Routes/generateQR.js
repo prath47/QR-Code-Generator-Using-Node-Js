@@ -1,8 +1,9 @@
 const { Router, json } = require("express");
 const QRCode = require("qrcode");
 const qrrouter = Router();
+const { isLogin } = require("../middlewares/auth");
 
-qrrouter.post("/", async (req, res) => {
+qrrouter.post("/", isLogin, async (req, res) => {
   const data = await req.body;
 
   const stringData = JSON.stringify(data);
@@ -17,6 +18,7 @@ qrrouter.post("/", async (req, res) => {
       //   console.log(code);
       return res.render("home", {
         // json: true,
+        url: url,
         imgSrc: code,
         user: req.user,
       });
