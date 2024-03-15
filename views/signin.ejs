@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include('./partials/links') %>
-        <title>Login</title>
+        <title>Signin</title>
 </head>
 
 <body>
@@ -20,7 +20,10 @@
                 <label for="exampleInputPassword" class="form-label">Password</label>
                 <input name="password" type="password" class="form-control" id="password" required />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="w-100">
+                <a href="/user/signup" class="btn text-center mr-4">Signup</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
         </form>
         <% if (typeof message !=='undefined' ) { %>
             <div class="alert alert-danger" role="alert">

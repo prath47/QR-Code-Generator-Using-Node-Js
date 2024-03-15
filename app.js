@@ -34,6 +34,10 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("*", (req, res) => {
+  return res.send("<h1>Bhai Back Chala ja ye route available nahi hai</h1>");
+});
+
 app.use("/generate-qr", qrrouter);
 
 app.listen(PORT, () => {
