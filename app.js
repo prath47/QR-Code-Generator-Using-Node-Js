@@ -8,7 +8,8 @@ const {
   checkForAuthenticationCookie,
 } = require("./middlewares/authentication");
 const cookieParser = require("cookie-parser");
-
+const { isLogin } = require("./middlewares/auth");
+const { qrrouter } = require("./Routes/generateQR");
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +33,8 @@ app.get("/", (req, res) => {
     user: req.user,
   });
 });
+
+app.use("/generate-qr", qrrouter);
 
 app.listen(PORT, () => {
   console.log(`App started on port ${PORT}`);

@@ -14,19 +14,18 @@
         <form method="post" action="/user/signin">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input name="email" type="email" class="form-control" id="email" aria-describedby="email"
-                    required />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword" class="form-label">Password</label>
-                    <input name="password" type="password" class="form-control" id="password" required />
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <% if (typeof message !== 'undefined') { %>
-                <div class="alert alert-danger" role="alert">
-                    <%= message %>
-                  </div>
+                <input name="email" type="email" class="form-control" id="email" aria-describedby="email" required />
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword" class="form-label">Password</label>
+                <input name="password" type="password" class="form-control" id="password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <% if (typeof message !=='undefined' ) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= message %>
+            </div>
             <% } %>
     </div>
     <%- include('./partials/scripts') %>
